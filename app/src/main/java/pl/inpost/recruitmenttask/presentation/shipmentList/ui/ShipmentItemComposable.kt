@@ -32,7 +32,7 @@ data class ShipmentItemUIModel(
 )
 
 data class ShipmentItemDetailLabelUIModel(
-    val label: String,
+    @StringRes val label: Int,
     val value: String,
 )
 
@@ -107,7 +107,7 @@ private fun MiddlePart(modifier: Modifier = Modifier, model: ShipmentItemUIModel
         model.detail?.let { detail ->
             Column {
                 Text(
-                    detail.label,
+                    text = stringResource(id = detail.label),
                     style = InPostTheme.typography.label,
                     color = Color(0xFF929497)
                 )
@@ -185,7 +185,7 @@ fun PreviewReadyToPickup() {
             status = R.string.status_ready_to_pickup,
             contact = "adresmailowy@mail.pl",
             detail = ShipmentItemDetailLabelUIModel(
-                label = "CZEKA NA ODBIÓR DO",
+                label = R.string.shipment_screen_item_date_waiting,
                 value = "pn. | 14.06.18 | 11:30",
             )
         )
@@ -204,7 +204,7 @@ fun PreviewReceived() {
             status = R.string.status_delivered,
             contact = "adresmailowy@mail.pl",
             detail = ShipmentItemDetailLabelUIModel(
-                label = "ODEBRANA",
+                label = R.string.shipment_screen_item_date_delivered,
                 value = "pn. | 14.06.18 | 11:30",
             )
         )

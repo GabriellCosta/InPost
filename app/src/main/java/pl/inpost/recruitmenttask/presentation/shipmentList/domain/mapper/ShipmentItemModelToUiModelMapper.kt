@@ -3,19 +3,49 @@ package pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.network.model.ShipmentType
 import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemModel
+import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemDetailLabelUIModel
 import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.Locale
 import javax.inject.Inject
 
-internal class ShipmentItemModelToUiModelMapper @Inject constructor() {
+internal class ShipmentItemModelToUiModelMapper @Inject constructor(
+    private val dateFormatter: ShipmentItemDateFormatter,
+) {
 
     fun mapFrom(from: ShipmentItemModel): ShipmentItemUIModel {
         return ShipmentItemUIModel(
             number = from.number,
             status = from.status.nameRes,
             contact = from.contact.email,
-            detail = null,
+            detail = getDetail(from),
             icon = mapIcon(from.shipmentType),
         )
+    }
+
+    private fun getDetail(
+        from: ShipmentItemModel
+    ): ShipmentItemDetailLabelUIModel? {
+        val date = when {
+            from.pickUpDate != null -> {
+                R.string.shipment_screen_item_date_waiting to from.pickUpDate
+            }
+
+            from.storedDate != null -> {
+                R.string.shipment_screen_item_date_delivered to from.storedDate
+            }
+            else -> null
+        }
+
+        return date?.let {
+            val formattedDate = dateFormatter.format(it.second)
+
+            ShipmentItemDetailLabelUIModel(
+                label = date.first,
+                value = formattedDate,
+            )
+        }
     }
 
     private fun mapIcon(shipmentType: ShipmentType): Int =
