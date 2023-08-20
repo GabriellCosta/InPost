@@ -39,18 +39,14 @@ internal class GroupResponseUseCase @Inject constructor(
         val mapped = toMap
             .groupBy { it.operationModel.highlight }
 
-        sorter(mapped[true].orEmpty()).map { itemModel ->
-            mapToUiModel(itemModel)
-        }.forEach {
-            mutableList.add(ShipmentItemType.ShipmentItem(it))
-        }
-
-        mutableList.add(
-            0,
-            ShipmentItemType.HeaderItem(
-                name = R.string.shipment_screen_item_separator_ready_to_pick_up,
+        if (mapAndAddToList(mapped[true], mutableList)) {
+            mutableList.add(
+                0,
+                ShipmentItemType.HeaderItem(
+                    name = R.string.shipment_screen_item_separator_ready_to_pick_up,
+                )
             )
-        )
+        }
 
         mutableList.add(
             ShipmentItemType.HeaderItem(
@@ -58,13 +54,23 @@ internal class GroupResponseUseCase @Inject constructor(
             )
         )
 
-        sorter(mapped[false].orEmpty()).map { itemModel ->
+        mapAndAddToList(mapped[false], mutableList)
+
+        return mutableList
+    }
+
+    private fun mapAndAddToList(
+        shipmentItemModels: List<ShipmentItemModel>?,
+        mutableList: MutableList<ShipmentItemType>
+    ): Boolean {
+        val map = sorter(shipmentItemModels.orEmpty()).map { itemModel ->
             mapToUiModel(itemModel)
-        }.forEach {
+        }
+        map.forEach {
             mutableList.add(ShipmentItemType.ShipmentItem(it))
         }
 
-        return mutableList
+        return map.isNotEmpty()
     }
 
     private fun mapToUiModel(it: ShipmentItemModel): ShipmentItemUIModel {
