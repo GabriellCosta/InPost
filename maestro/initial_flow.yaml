@@ -1,0 +1,31 @@
+appId: pl.inpost.recruitmenttask
+
+---
+
+- clearState
+- launchApp
+- tapOn:
+    text: "try again"
+- scrollUntilVisible:
+    element:
+      text: "56730345345597442248333"
+    direction: DOWN # DOWN|UP|LEFT|RIGHT (optional, default: DOWN)
+    timeout: 50000 # (optional, default: 20000ms)
+    speed: 40 # 0-100 (optional, default: 40) Scroll speed. Higher values scroll faster.
+    #visibilityPercentage: 100 # 0-100 (optional, default 100) Percentage of element visible in viewport
+- swipe:
+    from:
+      text: "56730345345597442248333" # From (x, y) center of element
+    direction: LEFT # To (50% of width, 10% of height)
+
+
+- stopApp
+- launchApp
+- scrollUntilVisible:
+    element:
+      text: "46730345345597442248333"
+    direction: DOWN # DOWN|UP|LEFT|RIGHT (optional, default: DOWN)
+    timeout: 50000 # (optional, default: 20000ms)
+    speed: 40 # 0-100 (optional, default: 40) Scroll speed. Higher values scroll faster.
+- assertNotVisible:
+    text: "56730345345597442248333"
