@@ -1,13 +1,13 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.domain
+package pl.inpost.recruitmenttask.features.shipmentList.domain
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import pl.inpost.recruitmenttask.R
-import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemModel
-import pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper.ShipmentItemModelToUiModelMapper
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemType
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
-import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemModel
+import pl.inpost.recruitmenttask.features.shipmentList.domain.mapper.ShipmentItemModelToUiModelMapper
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentItemType
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentUiModel
+import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemUIModel
 import javax.inject.Inject
 
 internal class GroupResponseUseCase @Inject constructor(

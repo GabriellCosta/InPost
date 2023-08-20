@@ -1,18 +1,15 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.presenter
+package pl.inpost.recruitmenttask.features.shipmentList.presenter
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import pl.inpost.recruitmenttask.presentation.shipmentList.domain.ArchiveShipmentUseCase
-import pl.inpost.recruitmenttask.presentation.shipmentList.domain.FetchShipmentInfoUseCase
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
+import pl.inpost.recruitmenttask.features.shipmentList.domain.ArchiveShipmentUseCase
+import pl.inpost.recruitmenttask.features.shipmentList.domain.FetchShipmentInfoUseCase
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentUiModel
 import javax.inject.Inject
 
 @HiltViewModel

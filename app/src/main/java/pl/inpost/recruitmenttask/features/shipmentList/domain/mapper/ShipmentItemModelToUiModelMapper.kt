@@ -1,14 +1,11 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper
+package pl.inpost.recruitmenttask.features.shipmentList.domain.mapper
 
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.network.model.ShipmentType
-import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemModel
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentAction
-import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemDetailLabelUIModel
-import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
-import java.util.Locale
+import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemModel
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.ShipmentAction
+import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemDetailLabelUIModel
+import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemUIModel
 import javax.inject.Inject
 
 internal class ShipmentItemModelToUiModelMapper @Inject constructor(

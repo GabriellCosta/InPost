@@ -1,8 +1,8 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.domain
+package pl.inpost.recruitmenttask.features.shipmentList.domain
 
 import kotlinx.coroutines.flow.Flow
-import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentRepository
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentRepository
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentUiModel
 import javax.inject.Inject
 
 internal class FetchShipmentInfoUseCase @Inject constructor(

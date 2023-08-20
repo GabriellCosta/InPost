@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.ui
+package pl.inpost.recruitmenttask.features.shipmentList.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

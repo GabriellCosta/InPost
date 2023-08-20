@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.ui
+package pl.inpost.recruitmenttask.features.shipmentList.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -26,7 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pl.inpost.recruitmenttask.R
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentAction
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.ShipmentAction
 import pl.inpost.recruitmenttask.theme.InPostTheme
 
 data class ShipmentItemUIModel(

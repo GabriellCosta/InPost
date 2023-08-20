@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList
+package pl.inpost.recruitmenttask.features.shipmentList
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -23,9 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,13 +32,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.inpost.recruitmenttask.R
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentAction
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentContract
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentListViewModel
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemType
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
-import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ItemSeparator
-import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemComposable
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.ShipmentAction
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.ShipmentContract
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.ShipmentListViewModel
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentItemType
+import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentUiModel
+import pl.inpost.recruitmenttask.features.shipmentList.ui.ItemSeparator
+import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemComposable
 import pl.inpost.recruitmenttask.theme.InPostTheme
 
 @OptIn(ExperimentalMaterialApi::class)

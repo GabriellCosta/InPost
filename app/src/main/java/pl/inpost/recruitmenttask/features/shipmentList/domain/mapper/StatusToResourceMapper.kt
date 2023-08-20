@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper
+package pl.inpost.recruitmenttask.features.shipmentList.domain.mapper
 
 import pl.inpost.recruitmenttask.R
 import javax.inject.Inject

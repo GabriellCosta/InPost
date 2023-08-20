@@ -4,8 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import pl.inpost.recruitmenttask.network.ApiTypeAdapter
-import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentDao
-import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemEntity
+import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentDao
+import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemEntity
 
 @Database(
     entities = [

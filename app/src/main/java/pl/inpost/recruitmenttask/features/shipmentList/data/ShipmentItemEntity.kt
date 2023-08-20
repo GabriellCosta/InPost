@@ -1,11 +1,8 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.data
+package pl.inpost.recruitmenttask.features.shipmentList.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import pl.inpost.recruitmenttask.network.model.CustomerNetwork
-import pl.inpost.recruitmenttask.network.model.EventLogNetwork
-import pl.inpost.recruitmenttask.network.model.OperationsNetwork
 import java.time.ZonedDateTime
 
 @Entity

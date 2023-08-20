@@ -1,7 +1,7 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model
+package pl.inpost.recruitmenttask.features.shipmentList.presenter.model
 
 import androidx.annotation.StringRes
-import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
+import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemUIModel
 
 sealed interface ShipmentState {
 

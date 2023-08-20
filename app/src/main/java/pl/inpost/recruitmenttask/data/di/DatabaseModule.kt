@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import pl.inpost.recruitmenttask.data.InPostDatabase
-import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentDao
+import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentDao
 import javax.inject.Singleton
 
 @Module

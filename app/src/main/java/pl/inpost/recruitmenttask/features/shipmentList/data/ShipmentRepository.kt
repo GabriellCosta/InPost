@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.data
+package pl.inpost.recruitmenttask.features.shipmentList.data
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

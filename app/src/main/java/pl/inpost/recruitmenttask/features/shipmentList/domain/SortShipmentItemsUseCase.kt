@@ -1,6 +1,6 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.domain
+package pl.inpost.recruitmenttask.features.shipmentList.domain
 
-import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemModel
 import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
 import javax.inject.Inject

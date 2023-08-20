@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList.presenter
+package pl.inpost.recruitmenttask.features.shipmentList.presenter
 
 interface ShipmentContract {
 
