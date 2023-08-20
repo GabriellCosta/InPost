@@ -12,6 +12,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "InPost Recruitment Task"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "InPostRecruitmentTask"
 include ':app'
 include(':infra:api-caller')

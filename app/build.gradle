@@ -43,6 +43,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.infra.apiCaller)
+
     coreLibraryDesugaring libs.com.android.tools.desugar.jdk.libs
 
     implementation libs.androidx.core.core.ktx
