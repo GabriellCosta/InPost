@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
 
 data class ShipmentUiModel(
+    val loading: Boolean = false,
     val items: List<ShipmentItemType> = emptyList(),
 )
 

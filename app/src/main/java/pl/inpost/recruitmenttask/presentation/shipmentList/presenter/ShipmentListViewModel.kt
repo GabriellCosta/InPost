@@ -16,18 +16,29 @@ internal class ShipmentListViewModel @Inject constructor(
     private val fetchShipmentInfoUseCase: FetchShipmentInfoUseCase,
 ) : ViewModel() {
 
-    private val mutableViewState = mutableStateOf(ShipmentUiModel())
-    val viewState: State<ShipmentUiModel> = mutableViewState
+    private val _viewState = mutableStateOf(ShipmentUiModel())
+    val viewState: State<ShipmentUiModel> = _viewState
 
     init {
         refreshData()
     }
 
+    fun invokeActions() {
+        refreshData()
+    }
+
     private fun refreshData() {
         viewModelScope.launch {
+            _viewState.value = _viewState.value.copy(
+                loading = true,
+            )
+
             fetchShipmentInfoUseCase()
                 .collectLatest {
-                    mutableViewState.value = ShipmentUiModel(it)
+                    _viewState.value = _viewState.value.copy(
+                        loading = false,
+                        items = it,
+                    )
                 }
         }
     }
