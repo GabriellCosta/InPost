@@ -1,11 +1,14 @@
 package pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model
 
+import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
+
 data class ShipmentUiModel(
-    val items: List<ShipmentItemUiModel> = emptyList(),
+    val items: List<ShipmentItemType> = emptyList(),
 )
 
-data class ShipmentItemUiModel(
-    val number: String,
-    val status: String,
-    val contact: String,
-)
+sealed interface ShipmentItemType {
+
+    data class HeaderItem(val name: String) : ShipmentItemType
+
+    data class ShipmentItem(val data: ShipmentItemUIModel) : ShipmentItemType
+}

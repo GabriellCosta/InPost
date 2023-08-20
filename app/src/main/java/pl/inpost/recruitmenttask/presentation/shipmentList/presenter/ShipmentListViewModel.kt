@@ -2,20 +2,15 @@ package pl.inpost.recruitmenttask.presentation.shipmentList.presenter
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainCoroutineDispatcher
 import kotlinx.coroutines.launch
+import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.network.api.ShipmentApi
-import pl.inpost.recruitmenttask.network.model.ShipmentNetwork
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemUiModel
+import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemType
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
-import pl.inpost.recruitmenttask.util.setState
+import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,15 +29,50 @@ class ShipmentListViewModel @Inject constructor(
         viewModelScope.launch {
             val shipments = shipmentApi.getShipments()
 
-            shipments.map {
-                ShipmentItemUiModel(
+            val mutableList = mutableListOf<ShipmentItemType>()
+
+            val mapped = shipments
+                .groupBy { it.operations.highlight }
+
+            mutableList.add(
+                ShipmentItemType.HeaderItem(
+                    name = "Gotowe do odbioru",
+                )
+            )
+
+            mapped[true]?.map {
+                ShipmentItemUIModel(
                     number = it.number,
                     status = it.status,
                     contact = it.sender?.email.orEmpty(),
+                    detail = null,
+                    icon = R.drawable.ic_kurier,
                 )
-            }
+            }.orEmpty()
+                .forEach {
+                    mutableList.add(ShipmentItemType.ShipmentItem(it))
+                }
 
-            mutableViewState.value {  }
+            mutableList.add(
+                ShipmentItemType.HeaderItem(
+                    name = "Pozostałe",
+                )
+            )
+
+            mapped[false]?.map {
+                ShipmentItemUIModel(
+                    number = it.number,
+                    status = it.status,
+                    contact = it.sender?.email.orEmpty(),
+                    detail = null,
+                    icon = R.drawable.ic_kurier,
+                )
+            }.orEmpty()
+                .forEach {
+                    mutableList.add(ShipmentItemType.ShipmentItem(it))
+                }
+
+            mutableViewState.value = ShipmentUiModel(mutableList)
         }
     }
 }
