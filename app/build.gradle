@@ -60,6 +60,7 @@ dependencies {
     ksp libs.androidx.room.compiler
 
     testImplementation libs.junit
+    testImplementation(libs.mockk)
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.androidx.test.espresso.espresso.core
 
