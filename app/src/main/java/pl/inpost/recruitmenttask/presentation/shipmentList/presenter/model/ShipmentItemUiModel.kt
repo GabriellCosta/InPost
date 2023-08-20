@@ -1,5 +1,6 @@
 package pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model
 
+import androidx.annotation.StringRes
 import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
 
 data class ShipmentUiModel(
@@ -8,7 +9,7 @@ data class ShipmentUiModel(
 
 sealed interface ShipmentItemType {
 
-    data class HeaderItem(val name: String) : ShipmentItemType
+    data class HeaderItem(@StringRes val name: Int) : ShipmentItemType
 
     data class ShipmentItem(val data: ShipmentItemUIModel) : ShipmentItemType
 }

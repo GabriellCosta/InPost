@@ -1,5 +1,6 @@
 package pl.inpost.recruitmenttask.presentation.shipmentList.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pl.inpost.recruitmenttask.R
@@ -24,7 +26,7 @@ import pl.inpost.recruitmenttask.theme.InPostTheme
 data class ShipmentItemUIModel(
     val number: String,
     val icon: Int,
-    val status: String,
+    @StringRes val status: Int,
     val detail: ShipmentItemDetailLabelUIModel?,
     val contact: String,
 )
@@ -97,7 +99,7 @@ private fun MiddlePart(modifier: Modifier = Modifier, model: ShipmentItemUIModel
                 color = Color(0xFF929497)
             )
             Text(
-                text = model.status,
+                text = stringResource(id = model.status),
                 style = InPostTheme.typography.bodyLarge,
             )
         }
@@ -164,7 +166,7 @@ fun PreviewDeliveredComposable() {
         val model = ShipmentItemUIModel(
             number = "235678654323567889762231",
             icon = R.drawable.ic_kurier,
-            status = "Wydana do doręczenia",
+            status = R.string.status_out_for_delivery,
             contact = "adresmailowy@mail.pl",
             detail = null,
         )
@@ -180,7 +182,7 @@ fun PreviewReadyToPickup() {
         val model = ShipmentItemUIModel(
             number = "235678654323567889762231",
             icon = R.drawable.ic_packing,
-            status = "Wydana do doręczenia",
+            status = R.string.status_ready_to_pickup,
             contact = "adresmailowy@mail.pl",
             detail = ShipmentItemDetailLabelUIModel(
                 label = "CZEKA NA ODBIÓR DO",
@@ -199,7 +201,7 @@ fun PreviewReceived() {
         val model = ShipmentItemUIModel(
             number = "235678654323567889762231",
             icon = R.drawable.ic_packing,
-            status = "Wydana do doręczenia",
+            status = R.string.status_delivered,
             contact = "adresmailowy@mail.pl",
             detail = ShipmentItemDetailLabelUIModel(
                 label = "ODEBRANA",

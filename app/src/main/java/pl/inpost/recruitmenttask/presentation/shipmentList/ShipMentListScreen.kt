@@ -67,7 +67,7 @@ private fun ShipListScreenContent(state: ShipmentUiModel) {
         items(state.items) {
             when(it){
                 is ShipmentItemType.HeaderItem -> {
-                    ItemSeparator(text = it.name)
+                    ItemSeparator(text = stringResource(id = it.name))
                 }
                 is ShipmentItemType.ShipmentItem -> {
                     ShipmentItemComposable(
