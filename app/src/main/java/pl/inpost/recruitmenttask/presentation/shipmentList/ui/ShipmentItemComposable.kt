@@ -66,7 +66,7 @@ private fun TopPart(model: ShipmentItemUIModel) {
     ) {
         Column {
             Text(
-                "NR PRZESYŁKI",
+                stringResource(id = R.string.shipment_screen_item_number),
                 style = InPostTheme.typography.label,
                 color = Color(0xFF929497)
             )
@@ -135,7 +135,7 @@ private fun BottomPart(modifier: Modifier = Modifier, model: ShipmentItemUIModel
     ) {
         Column {
             Text(
-                "NADAWCA",
+                text = stringResource(id = R.string.shipment_screen_item_contact),
                 style = InPostTheme.typography.label,
                 color = Color(0xFF929497)
             )
@@ -147,7 +147,7 @@ private fun BottomPart(modifier: Modifier = Modifier, model: ShipmentItemUIModel
 
         TextButton(onClick = { /*TODO*/ }) {
             Text(
-                text = "więcej",
+                text = stringResource(id = R.string.shipment_screen_item_action_button),
                 style = InPostTheme.typography.button,
                 color = Color(0xFF404041),
             )
