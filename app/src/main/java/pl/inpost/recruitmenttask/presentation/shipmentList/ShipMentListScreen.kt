@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.inpost.recruitmenttask.R
+import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentAction
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentListViewModel
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemType
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
@@ -50,7 +51,7 @@ internal fun ShipmentListScreen(
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewState.loading,
         onRefresh = {
-            viewModel.invokeActions()
+            ShipmentAction.Refresh
         },
     )
 
@@ -62,7 +63,9 @@ internal fun ShipmentListScreen(
         content = { paddingValues ->
             if (viewState.empty) {
                 EmptyState {
-                    viewModel.invokeActions()
+                    viewModel.invokeAction(
+                        ShipmentAction.Refresh
+                    )
                 }
             } else {
                 SuccessState(

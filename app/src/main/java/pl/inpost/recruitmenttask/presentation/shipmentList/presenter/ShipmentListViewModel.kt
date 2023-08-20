@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class ShipmentListViewModel @Inject constructor(
     private val fetchShipmentInfoUseCase: FetchShipmentInfoUseCase,
-) : ViewModel() {
+) : ShipmentContract, ViewModel() {
 
     private val _viewState = mutableStateOf(ShipmentUiModel())
     val viewState: State<ShipmentUiModel> = _viewState
@@ -23,7 +23,7 @@ internal class ShipmentListViewModel @Inject constructor(
         refreshData()
     }
 
-    fun invokeActions() {
+    override fun invokeAction(action: ShipmentAction) {
         refreshData()
     }
 
