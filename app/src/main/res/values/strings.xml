@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InPost Recruitment Task</string>
+    <string name="app_name" translatable="false">InPost Recruitment Task</string>
 
     <string name="status_adopted_at_sorting_center">Przyjęta w Sortowni</string>
     <string name="status_sent_from_sorting_center">Wysłana z Sortowni</string>
