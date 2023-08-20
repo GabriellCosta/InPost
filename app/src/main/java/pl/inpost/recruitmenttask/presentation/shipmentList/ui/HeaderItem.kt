@@ -14,17 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pl.inpost.recruitmenttask.InPostApp
 import pl.inpost.recruitmenttask.theme.InPostTheme
 
 @Composable
 fun ItemSeparator(
     text: String
 ) {
-    val modifier = Modifier
-        .padding(
-            vertical = 16.dp,
-        )
 
     Row(
         modifier = Modifier
@@ -36,7 +31,6 @@ fun ItemSeparator(
         ItemDivider()
 
         Text(
-            modifier = modifier,
             text = text,
             color = Color(0xFFBBBDBF),
             style = InPostTheme.typography.header,
