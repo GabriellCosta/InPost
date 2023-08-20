@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.map
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemModel
 import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentRepository
+import pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper.ShipmentItemModelToUiModelMapper
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemType
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentState
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 internal class FetchShipmentInfoUseCase @Inject constructor(
     private val repository: ShipmentRepository,
+    private val mapper: ShipmentItemModelToUiModelMapper,
 ) {
 
     suspend operator fun invoke(): Flow<ShipmentUiModel> {
@@ -68,12 +70,6 @@ internal class FetchShipmentInfoUseCase @Inject constructor(
     }
 
     private fun mapToUiModel(it: ShipmentItemModel): ShipmentItemUIModel {
-        return ShipmentItemUIModel(
-            number = it.number,
-            status = it.status.nameRes,
-            contact = it.contact.email,
-            detail = null,
-            icon = R.drawable.ic_kurier,
-        )
+        return mapper.mapFrom(it)
     }
 }
