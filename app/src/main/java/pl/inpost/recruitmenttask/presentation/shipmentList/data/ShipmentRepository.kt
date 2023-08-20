@@ -11,9 +11,13 @@ internal class ShipmentRepository @Inject constructor(
     private val localData: ShipmentLocalDatasource,
 ) {
 
-    suspend fun fetchShipments(): Flow<List<ShipmentItemModel>> {
+    suspend fun fetchShipments(
+        refresh: Boolean = false,
+    ): Flow<List<ShipmentItemModel>> {
         return flow {
-            emit(localData.fetch())
+            if (!refresh) {
+                emit(localData.fetch())
+            }
             val apiResult = api.getShipments()
             localData.saveAll(apiResult)
 

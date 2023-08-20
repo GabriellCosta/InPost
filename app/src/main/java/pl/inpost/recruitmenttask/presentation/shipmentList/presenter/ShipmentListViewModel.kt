@@ -25,7 +25,7 @@ internal class ShipmentListViewModel @Inject constructor(
     val viewState = _viewState.asStateFlow()
 
     init {
-        refreshData()
+        refreshData(false)
     }
 
     override fun invokeAction(action: ShipmentAction) {
@@ -39,7 +39,7 @@ internal class ShipmentListViewModel @Inject constructor(
     }
 
     private fun onRefresh(action: ShipmentAction) {
-        refreshData()
+        refreshData(true)
     }
 
     private fun onArchive(action: ShipmentAction.Archive) {
@@ -53,13 +53,13 @@ internal class ShipmentListViewModel @Inject constructor(
         }
     }
 
-    private fun refreshData() {
+    private fun refreshData(pullToRefresh: Boolean) {
         viewModelScope.launch {
             _viewState.value = _viewState.value.copy(
                 loading = true,
             )
 
-            fetchShipmentInfoUseCase()
+            fetchShipmentInfoUseCase(pullToRefresh)
                 .collectLatest {
                     _viewState.value = it.copy(
                         loading = false,

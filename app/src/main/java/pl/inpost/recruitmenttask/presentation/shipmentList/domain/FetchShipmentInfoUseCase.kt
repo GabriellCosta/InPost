@@ -10,7 +10,7 @@ internal class FetchShipmentInfoUseCase @Inject constructor(
     private val group: GroupResponseUseCase,
 ) {
 
-    suspend operator fun invoke(): Flow<ShipmentUiModel> {
-        return group(repository.fetchShipments())
+    suspend operator fun invoke(refresh: Boolean): Flow<ShipmentUiModel> {
+        return group(repository.fetchShipments(refresh))
     }
 }
