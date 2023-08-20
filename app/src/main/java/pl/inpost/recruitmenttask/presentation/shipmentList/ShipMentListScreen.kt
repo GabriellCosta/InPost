@@ -29,7 +29,7 @@ import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIMode
 import pl.inpost.recruitmenttask.theme.InPostTheme
 
 @Composable
-fun ShipmentListScreen(
+internal fun ShipmentListScreen(
     viewModel: ShipmentListViewModel = hiltViewModel()
 ) {
     Scaffold(

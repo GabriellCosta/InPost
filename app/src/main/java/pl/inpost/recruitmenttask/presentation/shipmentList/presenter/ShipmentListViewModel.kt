@@ -5,18 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import pl.inpost.recruitmenttask.network.api.ShipmentApi
 import pl.inpost.recruitmenttask.presentation.shipmentList.domain.FetchShipmentInfoUseCase
-import pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper.StatusToResourceMapper
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ShipmentListViewModel @Inject constructor(
-    private val shipmentApi: ShipmentApi,
-    private val mapper: StatusToResourceMapper,
-    private val fetchShipmentInfoUseCase: FetchShipmentInfoUseCase
+internal class ShipmentListViewModel @Inject constructor(
+    private val fetchShipmentInfoUseCase: FetchShipmentInfoUseCase,
 ) : ViewModel() {
 
     private val mutableViewState = mutableStateOf(ShipmentUiModel())
@@ -28,9 +25,10 @@ class ShipmentListViewModel @Inject constructor(
 
     private fun refreshData() {
         viewModelScope.launch {
-            val result = fetchShipmentInfoUseCase()
-
-            mutableViewState.value = ShipmentUiModel(result)
+            fetchShipmentInfoUseCase()
+                .collectLatest {
+                    mutableViewState.value = ShipmentUiModel(it)
+                }
         }
     }
 }
