@@ -12,6 +12,6 @@ internal interface ShipmentDao {
     @Query("SELECT * FROM shipmentitementity")
     suspend fun fetchShipment(): List<ShipmentItemEntity>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(shipment: List<ShipmentItemEntity>) : List<Long>
 }
