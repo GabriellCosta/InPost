@@ -7,7 +7,6 @@ import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemMode
 import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentRepository
 import pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper.ShipmentItemModelToUiModelMapper
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemType
-import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentState
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
 import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
 import javax.inject.Inject
@@ -15,6 +14,7 @@ import javax.inject.Inject
 internal class FetchShipmentInfoUseCase @Inject constructor(
     private val repository: ShipmentRepository,
     private val mapper: ShipmentItemModelToUiModelMapper,
+    private val sorter: SortShipmentItemsUseCase,
 ) {
 
     suspend operator fun invoke(): Flow<ShipmentUiModel> {
@@ -35,23 +35,24 @@ internal class FetchShipmentInfoUseCase @Inject constructor(
     }
 
     private fun processResponse(toMap: List<ShipmentItemModel>): List<ShipmentItemType> {
+
         val mutableList = mutableListOf<ShipmentItemType>()
 
         val mapped = toMap
             .groupBy { it.operationModel.highlight }
 
+        sorter(mapped[true].orEmpty()).map { itemModel ->
+            mapToUiModel(itemModel)
+        }.forEach {
+            mutableList.add(ShipmentItemType.ShipmentItem(it))
+        }
+
         mutableList.add(
+            0,
             ShipmentItemType.HeaderItem(
                 name = R.string.shipment_screen_item_separator_ready_to_pick_up,
             )
         )
-
-        mapped[true]?.map { itemModel ->
-            mapToUiModel(itemModel)
-        }.orEmpty()
-            .forEach {
-                mutableList.add(ShipmentItemType.ShipmentItem(it))
-            }
 
         mutableList.add(
             ShipmentItemType.HeaderItem(
@@ -59,12 +60,11 @@ internal class FetchShipmentInfoUseCase @Inject constructor(
             )
         )
 
-        mapped[false]?.map { itemModel ->
+        sorter(mapped[false].orEmpty()).map { itemModel ->
             mapToUiModel(itemModel)
-        }.orEmpty()
-            .forEach {
-                mutableList.add(ShipmentItemType.ShipmentItem(it))
-            }
+        }.forEach {
+            mutableList.add(ShipmentItemType.ShipmentItem(it))
+        }
 
         return mutableList
     }
