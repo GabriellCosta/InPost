@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,8 +39,28 @@ data class ShipmentItemDetailLabelUIModel(
     val value: String,
 )
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ShipmentItemComposable(
+    modifier: Modifier = Modifier,
+    model: ShipmentItemUIModel,
+) {
+    val dismissState = rememberDismissState(
+        confirmStateChange = {
+            true
+        }
+    )
+
+    SwipeToDismiss(state = dismissState, background = { }) {
+        InternalShipmentItemComposable(
+            modifier,
+            model,
+        )
+    }
+}
+
+@Composable
+fun InternalShipmentItemComposable(
     modifier: Modifier = Modifier,
     model: ShipmentItemUIModel,
 ) {
