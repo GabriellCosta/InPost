@@ -38,7 +38,8 @@ fun ItemSeparator(
         Text(
             modifier = modifier,
             text = text,
-            color = Color(0xFFBBBDBF)
+            color = Color(0xFFBBBDBF),
+            style = InPostTheme.typography.header,
         )
 
         ItemDivider()
