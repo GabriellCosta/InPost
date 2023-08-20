@@ -48,11 +48,7 @@ dependencies {
     implementation libs.androidx.core.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.com.google.android.material
-    implementation libs.androidx.constraintlayout
-    implementation libs.androidx.lifecycle.lifecycle.livedata.ktx
     implementation libs.androidx.lifecycle.lifecycle.viewmodel.ktx
-    implementation libs.androidx.fragment.fragment.ktx
-    implementation libs.androidx.swiperefreshlayout
     implementation libs.com.squareup.moshi.moshi.kotlin
 
     implementation libs.dagger.hilt.android
