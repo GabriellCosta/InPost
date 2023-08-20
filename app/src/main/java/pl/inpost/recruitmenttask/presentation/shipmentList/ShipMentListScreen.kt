@@ -170,7 +170,10 @@ private fun ShipListScreenContent(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        items(items) {
+        items(
+            key = { forKey -> forKey.hashCode() },
+            items = items
+        ) {
             when (it) {
                 is ShipmentItemType.HeaderItem -> {
                     ItemSeparator(text = stringResource(id = it.name))
