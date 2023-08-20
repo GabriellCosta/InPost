@@ -1,5 +1,10 @@
 package pl.inpost.recruitmenttask.features.shipmentList.data
 
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemContactModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemEntity
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemOperationModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemUpdateEntity
 import pl.inpost.recruitmenttask.network.model.ShipmentNetwork
 import pl.inpost.recruitmenttask.network.model.ShipmentStatus
 import pl.inpost.recruitmenttask.network.model.ShipmentType

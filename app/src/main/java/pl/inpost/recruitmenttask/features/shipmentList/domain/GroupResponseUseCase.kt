@@ -3,7 +3,7 @@ package pl.inpost.recruitmenttask.features.shipmentList.domain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import pl.inpost.recruitmenttask.R
-import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
 import pl.inpost.recruitmenttask.features.shipmentList.domain.mapper.ShipmentItemModelToUiModelMapper
 import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentItemType
 import pl.inpost.recruitmenttask.features.shipmentList.presenter.model.ShipmentUiModel

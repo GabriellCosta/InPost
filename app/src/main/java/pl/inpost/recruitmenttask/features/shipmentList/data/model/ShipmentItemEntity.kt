@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.features.shipmentList.data
+package pl.inpost.recruitmenttask.features.shipmentList.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

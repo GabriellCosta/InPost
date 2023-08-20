@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.features.shipmentList.data
+package pl.inpost.recruitmenttask.features.shipmentList.data.model
 
 import pl.inpost.recruitmenttask.network.model.ShipmentStatus
 import pl.inpost.recruitmenttask.network.model.ShipmentType

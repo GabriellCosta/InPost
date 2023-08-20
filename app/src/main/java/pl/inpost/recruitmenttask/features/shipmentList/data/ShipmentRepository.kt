@@ -3,6 +3,7 @@ package pl.inpost.recruitmenttask.features.shipmentList.data
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
 import pl.inpost.recruitmenttask.network.api.ShipmentApi
 import javax.inject.Inject
 

@@ -6,9 +6,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import pl.inpost.recruitmenttask.R
-import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemContactModel
-import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemModel
-import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemOperationModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemContactModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemOperationModel
 import pl.inpost.recruitmenttask.features.shipmentList.presenter.ShipmentAction
 import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemDetailLabelUIModel
 import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemUIModel

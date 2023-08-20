@@ -2,7 +2,7 @@ package pl.inpost.recruitmenttask.features.shipmentList.domain.mapper
 
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.network.model.ShipmentType
-import pl.inpost.recruitmenttask.features.shipmentList.data.ShipmentItemModel
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
 import pl.inpost.recruitmenttask.features.shipmentList.presenter.ShipmentAction
 import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemDetailLabelUIModel
 import pl.inpost.recruitmenttask.features.shipmentList.ui.ShipmentItemUIModel
