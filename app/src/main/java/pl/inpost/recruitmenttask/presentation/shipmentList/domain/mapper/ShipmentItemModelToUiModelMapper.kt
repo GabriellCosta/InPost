@@ -23,6 +23,7 @@ internal class ShipmentItemModelToUiModelMapper @Inject constructor(
             detail = getDetail(from),
             icon = mapIcon(from.shipmentType),
             archiveAction = ShipmentAction.Archive(from.number),
+            isSwappable = from.operationModel.manualArchive,
         )
     }
 

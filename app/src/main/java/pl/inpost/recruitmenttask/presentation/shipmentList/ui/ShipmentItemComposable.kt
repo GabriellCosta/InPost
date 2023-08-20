@@ -18,7 +18,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +36,7 @@ data class ShipmentItemUIModel(
     val detail: ShipmentItemDetailLabelUIModel?,
     val contact: String,
     val archiveAction: ShipmentAction = ShipmentAction.InitialAction,
+    val isSwappable: Boolean = true,
 )
 
 data class ShipmentItemDetailLabelUIModel(
@@ -62,7 +62,11 @@ fun ShipmentItemComposable(
         }
     )
 
-    val directions = setOf(DismissDirection.EndToStart)
+    val directions = buildSet {
+        if (model.isSwappable) {
+            add(DismissDirection.EndToStart)
+        }
+    }
 
     SwipeToDismiss(
         directions = directions,
