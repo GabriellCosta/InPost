@@ -21,8 +21,11 @@ import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,7 +49,7 @@ import pl.inpost.recruitmenttask.theme.InPostTheme
 internal fun ShipmentListScreen(
     viewModel: ShipmentListViewModel = hiltViewModel()
 ) {
-    val viewState by remember { viewModel.viewState }
+    val viewState by viewModel.viewState.collectAsState()
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewState.loading,
@@ -93,7 +96,7 @@ private fun SuccessState(
             .pullRefresh(pullRefreshState)
     ) {
         ShipListScreenContent(
-            state = viewState,
+            items = viewState.items,
             contract = contract,
         )
 
@@ -158,7 +161,7 @@ private fun ShipmentTopBar() {
 @Composable
 private fun ShipListScreenContent(
     modifier: Modifier = Modifier,
-    state: ShipmentUiModel,
+    items: List<ShipmentItemType>,
     contract: ShipmentContract,
 ) {
     LazyColumn(
@@ -167,7 +170,7 @@ private fun ShipListScreenContent(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        items(state.items) {
+        items(items) {
             when (it) {
                 is ShipmentItemType.HeaderItem -> {
                     ItemSeparator(text = stringResource(id = it.name))

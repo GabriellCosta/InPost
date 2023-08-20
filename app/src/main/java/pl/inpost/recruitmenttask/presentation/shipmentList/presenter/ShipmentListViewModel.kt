@@ -5,6 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import pl.inpost.recruitmenttask.presentation.shipmentList.domain.ArchiveShipmentUseCase
@@ -18,8 +21,8 @@ internal class ShipmentListViewModel @Inject constructor(
     private val archiveShipmentUseCase: ArchiveShipmentUseCase,
 ) : ShipmentContract, ViewModel() {
 
-    private val _viewState = mutableStateOf(ShipmentUiModel())
-    val viewState: State<ShipmentUiModel> = _viewState
+    private val _viewState = MutableStateFlow(ShipmentUiModel())
+    val viewState = _viewState.asStateFlow()
 
     init {
         refreshData()
