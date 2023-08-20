@@ -105,7 +105,9 @@ private fun MiddlePart(modifier: Modifier = Modifier, model: ShipmentItemUIModel
         }
 
         model.detail?.let { detail ->
-            Column {
+            Column(
+                horizontalAlignment = Alignment.End,
+            ) {
                 Text(
                     text = stringResource(id = detail.label),
                     style = InPostTheme.typography.label,
