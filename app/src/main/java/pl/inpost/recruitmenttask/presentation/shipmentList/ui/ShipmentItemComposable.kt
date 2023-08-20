@@ -1,11 +1,13 @@
 package pl.inpost.recruitmenttask.presentation.shipmentList.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -34,10 +36,12 @@ data class ShipmentItemDetailLabelUIModel(
 
 @Composable
 fun ShipmentItemComposable(
+    modifier: Modifier = Modifier,
     model: ShipmentItemUIModel,
 ) {
     Surface(
-        modifier = Modifier
+        modifier = modifier
+            .background(MaterialTheme.colors.background)
             .padding(
                 horizontal = 20.dp,
             )
@@ -165,7 +169,7 @@ fun PreviewDeliveredComposable() {
             detail = null,
         )
 
-        ShipmentItemComposable(model)
+        ShipmentItemComposable(model = model)
     }
 }
 
@@ -184,7 +188,7 @@ fun PreviewReadyToPickup() {
             )
         )
 
-        ShipmentItemComposable(model)
+        ShipmentItemComposable(model = model)
     }
 }
 
@@ -203,6 +207,6 @@ fun PreviewReceived() {
             )
         )
 
-        ShipmentItemComposable(model)
+        ShipmentItemComposable(model = model)
     }
 }
