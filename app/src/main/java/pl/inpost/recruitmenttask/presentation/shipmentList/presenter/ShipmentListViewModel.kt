@@ -37,6 +37,7 @@ internal class ShipmentListViewModel @Inject constructor(
                 .collectLatest {
                     _viewState.value = _viewState.value.copy(
                         loading = false,
+                        empty = it.size < 3,
                         items = it,
                     )
                 }

@@ -1,19 +1,25 @@
 package pl.inpost.recruitmenttask.presentation.shipmentList
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.PullRefreshState
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,7 +27,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.inpost.recruitmenttask.R
@@ -52,24 +60,79 @@ internal fun ShipmentListScreen(
             ShipmentTopBar()
         },
         content = { paddingValues ->
-            Box(
-                modifier = Modifier
-                    .padding(paddingValues)
-                    .pullRefresh(pullRefreshState)
-            ) {
-                ShipListScreenContent(
-                    state = viewState
-                )
-
-                PullRefreshIndicator(
-                    modifier = Modifier
-                        .align(Alignment.TopCenter),
-                    refreshing = viewState.loading,
-                    state = pullRefreshState,
+            if (viewState.empty) {
+                EmptyState {
+                    viewModel.invokeActions()
+                }
+            } else {
+                SuccessState(
+                    paddingValues,
+                    pullRefreshState,
+                    viewState = viewState,
                 )
             }
         }
     )
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun SuccessState(
+    paddingValues: PaddingValues,
+    pullRefreshState: PullRefreshState,
+    viewState: ShipmentUiModel
+) {
+    Box(
+        modifier = Modifier
+            .padding(paddingValues)
+            .pullRefresh(pullRefreshState)
+    ) {
+        ShipListScreenContent(
+            state = viewState
+        )
+
+        PullRefreshIndicator(
+            modifier = Modifier
+                .align(Alignment.TopCenter),
+            refreshing = viewState.loading,
+            state = pullRefreshState,
+        )
+    }
+}
+
+@Composable
+private fun EmptyState(
+    onClick: () -> Unit,
+) {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 24.dp)
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ill_error),
+            contentDescription = null,
+        )
+
+        Text(
+            modifier = Modifier.padding(vertical = 16.dp),
+            text = "We had a problem trying to get your items : (",
+            textAlign = TextAlign.Center,
+            style = InPostTheme.typography.body
+        )
+
+        OutlinedButton(
+            onClick = onClick,
+        ) {
+            Text(
+                text = "Try again",
+                style = InPostTheme.typography.button,
+                color = Color(0xFF404041),
+            )
+        }
+    }
 }
 
 @Composable
