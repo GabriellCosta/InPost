@@ -16,6 +16,8 @@
     <string name="status_returned_to_sender">Returned to Sender</string>
 
     <!-- Shipment Item labels-->
+    <string name="shipment_screen_item_date_waiting">WAITING FOR PICKUP UNTIL</string>
+    <string name="shipment_screen_item_date_delivered">RECEIVED</string>
     <string name="shipment_screen_item_number">SHIPMENT NUMBER</string>
     <string name="shipment_screen_item_status">STATUS</string>
     <string name="shipment_screen_item_contact">SENDER</string>
