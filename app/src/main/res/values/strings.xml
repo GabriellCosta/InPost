@@ -14,4 +14,12 @@
     <string name="status_pickup_time_expired">Upłynął termin odbioru</string>
     <string name="status_ready_to_pickup">Gotowa do odbioru</string>
     <string name="status_returned_to_sender">Zwrot do Nadawcy</string>
+    
+    <!-- Shipment Item labels-->
+    <string name="shipment_screen_item_number">NR PRZESYŁKI</string>
+    <string name="shipment_screen_item_status">STATUS</string>
+    <string name="shipment_screen_item_contact">NADAWCA</string>
+    <string name="shipment_screen_item_action_button">więcej</string>
+    <string name="shipment_screen_item_separator_ready_to_pick_up">Gotowe do odbioru</string>
+    <string name="shipment_screen_item_separator_not_ready_to_pick_up">Pozostałe</string>
 </resources>
