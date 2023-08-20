@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentAction
+import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentContract
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentListViewModel
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentItemType
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
@@ -72,6 +73,7 @@ internal fun ShipmentListScreen(
                     paddingValues,
                     pullRefreshState,
                     viewState = viewState,
+                    contract = viewModel,
                 )
             }
         }
@@ -83,7 +85,8 @@ internal fun ShipmentListScreen(
 private fun SuccessState(
     paddingValues: PaddingValues,
     pullRefreshState: PullRefreshState,
-    viewState: ShipmentUiModel
+    viewState: ShipmentUiModel,
+    contract: ShipmentContract,
 ) {
     Box(
         modifier = Modifier
@@ -91,7 +94,8 @@ private fun SuccessState(
             .pullRefresh(pullRefreshState)
     ) {
         ShipListScreenContent(
-            state = viewState
+            state = viewState,
+            contract = contract,
         )
 
         PullRefreshIndicator(
@@ -155,7 +159,8 @@ private fun ShipmentTopBar() {
 @Composable
 private fun ShipListScreenContent(
     modifier: Modifier = Modifier,
-    state: ShipmentUiModel
+    state: ShipmentUiModel,
+    contract: ShipmentContract,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -173,6 +178,9 @@ private fun ShipListScreenContent(
                     ShipmentItemComposable(
                         modifier = Modifier.fillMaxWidth(),
                         model = it.data,
+                        dismissAction = {
+                            contract.invokeAction(it.data.archiveAction)
+                        },
                     )
                 }
             }

@@ -3,6 +3,7 @@ package pl.inpost.recruitmenttask.presentation.shipmentList.domain.mapper
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.network.model.ShipmentType
 import pl.inpost.recruitmenttask.presentation.shipmentList.data.ShipmentItemModel
+import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentAction
 import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemDetailLabelUIModel
 import pl.inpost.recruitmenttask.presentation.shipmentList.ui.ShipmentItemUIModel
 import java.time.format.DateTimeFormatter
@@ -21,6 +22,7 @@ internal class ShipmentItemModelToUiModelMapper @Inject constructor(
             contact = from.contact.email,
             detail = getDetail(from),
             icon = mapIcon(from.shipmentType),
+            archiveAction = ShipmentAction.Archive(from.number),
         )
     }
 
@@ -35,6 +37,7 @@ internal class ShipmentItemModelToUiModelMapper @Inject constructor(
             from.storedDate != null -> {
                 R.string.shipment_screen_item_date_delivered to from.storedDate
             }
+
             else -> null
         }
 

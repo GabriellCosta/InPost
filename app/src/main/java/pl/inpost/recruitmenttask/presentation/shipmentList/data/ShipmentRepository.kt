@@ -20,4 +20,10 @@ internal class ShipmentRepository @Inject constructor(
             emit(localData.fetch())
         }
     }
+
+    suspend fun archiveShipment(number: String): Flow<List<ShipmentItemModel>> {
+        localData.archiveItem(number)
+
+        return flowOf(localData.fetch())
+    }
 }

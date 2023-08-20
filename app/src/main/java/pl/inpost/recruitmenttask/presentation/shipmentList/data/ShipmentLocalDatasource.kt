@@ -51,6 +51,9 @@ internal class ShipmentLocalDatasource @Inject constructor(
                     false
                 }
             }
+            .filter {
+                !it.isArchived
+            }
             .map {
                 ShipmentItemModel(
                     number = it.number,
@@ -75,5 +78,14 @@ internal class ShipmentLocalDatasource @Inject constructor(
 
                 )
             }
+    }
+
+    suspend fun archiveItem(number: String) {
+        val toUpdate = ShipmentItemUpdateEntity(
+            number = number,
+            isArchived = true,
+        )
+
+        dao.updateShipment(toUpdate)
     }
 }

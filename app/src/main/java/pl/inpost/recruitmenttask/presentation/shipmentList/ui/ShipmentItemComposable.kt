@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pl.inpost.recruitmenttask.R
+import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.ShipmentAction
 import pl.inpost.recruitmenttask.theme.InPostTheme
 
 data class ShipmentItemUIModel(
@@ -32,6 +33,7 @@ data class ShipmentItemUIModel(
     @StringRes val status: Int,
     val detail: ShipmentItemDetailLabelUIModel?,
     val contact: String,
+    val archiveAction: ShipmentAction = ShipmentAction.InitialAction,
 )
 
 data class ShipmentItemDetailLabelUIModel(
@@ -44,9 +46,11 @@ data class ShipmentItemDetailLabelUIModel(
 fun ShipmentItemComposable(
     modifier: Modifier = Modifier,
     model: ShipmentItemUIModel,
+    dismissAction: () -> Unit = {},
 ) {
     val dismissState = rememberDismissState(
         confirmStateChange = {
+            dismissAction()
             true
         }
     )

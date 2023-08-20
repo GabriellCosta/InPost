@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 internal interface ShipmentDao {
@@ -14,4 +15,7 @@ internal interface ShipmentDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(shipment: List<ShipmentItemEntity>) : List<Long>
+
+    @Update(ShipmentItemEntity::class)
+    suspend fun updateShipment(shipment: ShipmentItemUpdateEntity)
 }

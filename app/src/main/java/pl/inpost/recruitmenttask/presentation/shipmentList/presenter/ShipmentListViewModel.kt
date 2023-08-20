@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import pl.inpost.recruitmenttask.presentation.shipmentList.domain.ArchiveShipmentUseCase
 import pl.inpost.recruitmenttask.presentation.shipmentList.domain.FetchShipmentInfoUseCase
 import pl.inpost.recruitmenttask.presentation.shipmentList.presenter.model.ShipmentUiModel
 import javax.inject.Inject
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class ShipmentListViewModel @Inject constructor(
     private val fetchShipmentInfoUseCase: FetchShipmentInfoUseCase,
+    private val archiveShipmentUseCase: ArchiveShipmentUseCase,
 ) : ShipmentContract, ViewModel() {
 
     private val _viewState = mutableStateOf(ShipmentUiModel())
@@ -24,7 +26,28 @@ internal class ShipmentListViewModel @Inject constructor(
     }
 
     override fun invokeAction(action: ShipmentAction) {
+        when(action) {
+            is ShipmentAction.Archive -> onArchive(action)
+            ShipmentAction.Refresh -> onRefresh(action)
+            ShipmentAction.InitialAction -> {
+                // DO NOTHING FOR NOW, could be useful for impression
+            }
+        }
+    }
+
+    private fun onRefresh(action: ShipmentAction) {
         refreshData()
+    }
+
+    private fun onArchive(action: ShipmentAction.Archive) {
+        viewModelScope.launch {
+            archiveShipmentUseCase(action.id)
+                .collectLatest {
+                    _viewState.value = it.copy(
+                        loading = false,
+                    )
+                }
+        }
     }
 
     private fun refreshData() {
