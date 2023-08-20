@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.DismissDirection
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -55,7 +56,13 @@ fun ShipmentItemComposable(
         }
     )
 
-    SwipeToDismiss(state = dismissState, background = { }) {
+    val directions = setOf(DismissDirection.EndToStart)
+
+    SwipeToDismiss(
+        directions = directions,
+        state = dismissState,
+        background = { },
+    ) {
         InternalShipmentItemComposable(
             modifier,
             model,
