@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DismissDirection
+import androidx.compose.material.DismissValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -17,6 +18,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -50,9 +52,13 @@ fun ShipmentItemComposable(
     dismissAction: () -> Unit = {},
 ) {
     val dismissState = rememberDismissState(
-        confirmStateChange = {
-            dismissAction()
-            true
+        confirmStateChange = { dismissValue ->
+            if (dismissValue == DismissValue.DismissedToStart) {
+                dismissAction()
+                true
+            } else {
+                false
+            }
         }
     )
 
