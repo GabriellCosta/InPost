@@ -56,13 +56,14 @@ compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose_
 
 
 [plugins]
-com-android-application = "com.android.application:8.1.0"
-com-android-library = "com.android.library:8.1.0"
+android-application = "com.android.application:8.1.0"
+android-library = "com.android.library:8.1.0"
+hilt-android = "com.google.dagger.hilt.android:2.47"
+kotlin-android = "org.jetbrains.kotlin.android:1.9.0"
+devtools-ksp = "com.google.devtools.ksp:1.9.0-1.0.13"
+
 com-github-ben-manes-versions = "com.github.ben-manes.versions:0.41.0"
-com-google-dagger-hilt-android = "com.google.dagger.hilt.android:2.47"
-com-google-devtools-ksp = "com.google.devtools.ksp:1.9.0-1.0.13"
 nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.1"
-org-jetbrains-kotlin-android = "org.jetbrains.kotlin.android:1.9.0"
 
 [bundles]
 compose-feature-ui = ["compose-material3", "compose-material", "compose-foundation", "compose-ui", "compose-preview", "compose-tooling"]
