@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.time.ZonedDateTime
 
 @Entity
-internal class ShipmentItemEntity(
+internal data class ShipmentItemEntity(
     @PrimaryKey(false)
     @ColumnInfo("number")
     val number: String,
