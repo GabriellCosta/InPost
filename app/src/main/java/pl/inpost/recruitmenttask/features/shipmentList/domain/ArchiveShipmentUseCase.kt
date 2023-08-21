@@ -10,7 +10,7 @@ internal class ArchiveShipmentUseCase @Inject constructor(
     private val group: GroupResponseUseCase,
 ) {
 
-    suspend operator fun invoke(number: String): Flow<ShipmentUiModel> {
+    operator fun invoke(number: String): Flow<ShipmentUiModel> {
         return group(repository.archiveShipment(number))
     }
 }

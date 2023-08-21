@@ -2,7 +2,6 @@ package pl.inpost.recruitmenttask.features.shipmentList.data
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
 import pl.inpost.recruitmenttask.network.api.ShipmentApi
 import javax.inject.Inject
@@ -12,7 +11,7 @@ internal class ShipmentRepository @Inject constructor(
     private val localData: ShipmentLocalDatasource,
 ) {
 
-    suspend fun fetchShipments(
+    fun fetchShipments(
         refresh: Boolean = false,
     ): Flow<List<ShipmentItemModel>> {
         return flow {
@@ -26,9 +25,11 @@ internal class ShipmentRepository @Inject constructor(
         }
     }
 
-    suspend fun archiveShipment(number: String): Flow<List<ShipmentItemModel>> {
-        localData.archiveItem(number)
+    fun archiveShipment(number: String): Flow<List<ShipmentItemModel>> {
+        return flow {
+            localData.archiveItem(number)
 
-        return flowOf(localData.fetch())
+            emit(localData.fetch())
+        }
     }
 }
