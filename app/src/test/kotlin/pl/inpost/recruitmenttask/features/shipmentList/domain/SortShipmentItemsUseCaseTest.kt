@@ -71,6 +71,60 @@ internal class SortShipmentItemsUseCaseTest {
         assertEquals(expected, result)
     }
 
+    @Test
+    fun invoke_sort_fullList() {
+        val shipment1 = shipmentItemModel(
+            number = "26730345345597442248333",
+            storedDate = ZonedDateTime.parse("2022-11-29T04:56:07Z"),
+            expiryDate = ZonedDateTime.parse("2022-11-29T04:56:07Z"),
+            status = ShipmentStatus.CONFIRMED
+        )
+
+        val shipment2 = shipmentItemModel(
+            number = "46730345345597442248333",
+            storedDate = ZonedDateTime.parse("2022-11-25T04:56:07Z"),
+            expiryDate = ZonedDateTime.parse("2022-12-05T04:56:07Z"),
+            status = ShipmentStatus.OUT_FOR_DELIVERY
+        )
+
+        val shipment3 = shipmentItemModel(
+            number = "56730345345597442248333",
+            storedDate = ZonedDateTime.parse("2022-11-25T04:56:07Z"),
+            expiryDate = ZonedDateTime.parse("2022-12-05T04:56:07Z"),
+            status = ShipmentStatus.OUT_FOR_DELIVERY
+        )
+
+        val shipment5 = shipmentItemModel(
+            number = "76730345345597442248333",
+            storedDate = ZonedDateTime.parse("2021-07-29T04:56:07Z"),
+            expiryDate = ZonedDateTime.parse("2021-12-29T04:56:07Z"),
+            status = ShipmentStatus.SENT_FROM_SOURCE_BRANCH
+        )
+
+        val shipment6 = shipmentItemModel(
+            number = "86730345345597442248333",
+            storedDate = ZonedDateTime.parse("2022-11-04T04:56:07Z"),
+            expiryDate = ZonedDateTime.parse("2022-11-05T04:56:07Z"),
+            status = ShipmentStatus.AVIZO
+        )
+
+        val shipment7 = shipmentItemModel(
+            number = "96730345345597442248333",
+            pickUpDate = ZonedDateTime.parse("2022-11-05T04:56:07Z"),
+            status = ShipmentStatus.CONFIRMED
+        )
+
+        val shipments =
+            listOf(shipment1, shipment2, shipment3, shipment5, shipment6, shipment7)
+        val expected =
+            listOf(shipment1, shipment7, shipment5, shipment6, shipment2, shipment3)
+
+
+        val result = subject.invoke(shipments)
+
+        assertEquals(expected, result)
+    }
+
     private fun shipmentItemModel(
         number: String,
         storedDate: ZonedDateTime? = null,
