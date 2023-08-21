@@ -1,5 +1,7 @@
 package pl.inpost.recruitmenttask.features.shipmentList.data
 
+import pl.inpost.recruitmenttask.features.shipmentList.data.fetch.FetchDecorators
+import pl.inpost.recruitmenttask.features.shipmentList.data.fetch.LocalFetchDecorator
 import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemContactModel
 import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemEntity
 import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
@@ -12,6 +14,7 @@ import javax.inject.Inject
 
 internal class ShipmentLocalDatasource @Inject constructor(
     private val dao: ShipmentDao,
+    private val fetchDecorators: LocalFetchDecorator,
 ) {
 
     suspend fun saveAll(list: List<ShipmentNetwork>) {
@@ -39,26 +42,7 @@ internal class ShipmentLocalDatasource @Inject constructor(
     }
 
     suspend fun fetch(): List<ShipmentItemModel> {
-        return dao.fetchShipment()
-            .filter {
-                try {
-                    ShipmentType.valueOf(it.shipmentType)
-                    true
-                } catch (ex: Exception) {
-                    false
-                }
-            }
-            .filter {
-                try {
-                    ShipmentStatus.valueOf(it.status)
-                    true
-                } catch (ex: Exception) {
-                    false
-                }
-            }
-            .filter {
-                !it.isArchived
-            }
+        return fetchDecorators.apply(dao.fetchShipment())
             .map {
                 ShipmentItemModel(
                     number = it.number,

@@ -1,0 +1,20 @@
+package pl.inpost.recruitmenttask.features.shipmentList.data.fetch
+
+import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemEntity
+import pl.inpost.recruitmenttask.network.model.ShipmentStatus
+import pl.inpost.recruitmenttask.network.model.ShipmentType
+import javax.inject.Inject
+
+internal class ValidTypeDecorator @Inject constructor() : FetchDecorators {
+    override fun apply(item: List<ShipmentItemEntity>): List<ShipmentItemEntity> {
+        return item.filter {
+            try {
+                ShipmentType.valueOf(it.shipmentType)
+                true
+            } catch (ex: Exception) {
+                // TODO: Add remote logger here to alert for new types being send from BE
+                false
+            }
+        }
+    }
+}
