@@ -48,13 +48,15 @@ internal class GroupResponseUseCase @Inject constructor(
             )
         }
 
-        mutableList.add(
-            ShipmentItemType.HeaderItem(
-                name = R.string.shipment_screen_item_separator_not_ready_to_pick_up,
+        if (mapped[false]?.isNotEmpty() == true) {
+            mutableList.add(
+                ShipmentItemType.HeaderItem(
+                    name = R.string.shipment_screen_item_separator_not_ready_to_pick_up,
+                )
             )
-        )
 
-        mapAndAddToList(mapped[false], mutableList)
+            mapAndAddToList(mapped[false], mutableList)
+        }
 
         return mutableList
     }
