@@ -3,6 +3,7 @@ package pl.inpost.recruitmenttask.features.shipmentList.data
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import pl.inpost.recruitmenttask.features.shipmentList.data.model.ShipmentItemModel
+import pl.inpost.recruitmenttask.infra.caller.callApi
 import pl.inpost.recruitmenttask.network.api.ShipmentApi
 import javax.inject.Inject
 
@@ -18,12 +19,24 @@ internal class ShipmentRepository @Inject constructor(
             if (!refresh) {
                 emit(localData.fetch())
             }
-            val apiResult = api.getShipments()
+            val apiResult = fetchApi()
+
             localData.saveAll(apiResult)
 
             emit(localData.fetch())
         }
     }
+
+    private suspend fun fetchApi() =
+        callApi { api.getShipments() }
+            .map(
+                success = {
+                    it
+                },
+                error = {
+                    emptyList()
+                }
+            )
 
     fun archiveShipment(number: String): Flow<List<ShipmentItemModel>> {
         return flow {
