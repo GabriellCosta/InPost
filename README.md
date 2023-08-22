@@ -85,4 +85,4 @@ of the initial configuration, of course the team need to be align with some modu
 
 ### CI/CD
 
-No CI/CD was added here
+A simple run test job is added
